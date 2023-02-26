@@ -1,0 +1,15 @@
+sudoL required
+services:
+  - docker
+
+before_install:
+  - docker build -t dprogaws/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run dprogaws/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t dprogaws/multi-client ./client
+  - docker build -t dprogaws/multi-nginx ./nginx
+  - docker build -t dprogaws/multi-server ./server
+  - docker build -t dprogaws/multi-worker ./worker
