@@ -22,4 +22,3 @@ after_success:
   - docker push dprogaws/multi-nginx
   - docker push dprogaws/multi-server
   - docker push dprogaws/multi-worker
-  -
